@@ -1,4 +1,2 @@
 # carla-drive
-
-
-altıma yaptım
+sa
