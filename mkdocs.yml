@@ -1,0 +1,9 @@
+site_name: Carla Drive (FTI)
+theme:
+  name: material
+
+nav:
+  - Home: index.md
+  - Setup (Mac): setup.md
+  - Setup (Windows): setup_windows.md
+  - Project Structure: project_structure.md
