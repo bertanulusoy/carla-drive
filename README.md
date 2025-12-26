@@ -23,3 +23,5 @@ hedefleyen bir deney/araştırma repo’su.
 ```bash
 poetry install --extras dev
 poetry run pytest
+
+işte böyle yapılıyor
