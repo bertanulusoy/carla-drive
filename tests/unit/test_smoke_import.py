@@ -1,2 +1,2 @@
 def test_import_package():
-    import carla_drive  # noqa: F401
+    import carla_sürüşü  # noqa: F401
