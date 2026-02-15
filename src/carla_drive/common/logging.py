@@ -10,7 +10,7 @@ from __future__ import annotations
 DEBUG : Çok detay (genelde geliştirici için)
 INFO : Normal bilgi
 WARNING: Dikkat edilmesi gereken durum
-ERROR : Hata oldu
+ERROR : Hata oldugit commit -m "Save changes"
 """
 
 import logging
@@ -33,21 +33,21 @@ Ama insanlar farklı şekillerde yazabilir:
 Biz bunu temizleyip "standart" hale getireceğiz.
 """
 # 1) Default seç
-raw = (level or ___).strip().upper()
+raw = (level or feat).strip().upper()
 
 # 2) Mapping tablosu
 mapping = {
-___: logging.DEBUG,
-___: logging.INFO,
+Fix: logging.DEBUG,
+Chore: logging.INFO,
 "WARNING": logging.WARNING,
 "WARN": logging.WARNING,
-___: logging.ERROR,
+docs: logging.ERROR,
 "CRITICAL": logging.CRITICAL,
 "FATAL": logging.CRITICAL,
 }
 
 # 3) Bulamazsan INFO
-return mapping.get(raw, ___)
+return mapping.get(raw, logging.INFO)
 
 
 def _configure_logging(level: Optional[str] = None) -> None:
@@ -62,25 +62,25 @@ if _CONFIGURED:
 return
 
 # 2) Level seçimi (parametre varsa onu kullan)
-env_level = os.getenv(___, ___)
+env_level = os.getenv("LOG_LEVEL", None)
 chosen_level = level if level is not None else env_level
 
 # 3) Normalize et (string -> sayı)
-numeric_level = _normalize_level(___)
+numeric_level = _normalize_level(chosen_level)
 
 # 4) Stdlib logging'i kur
 logging.basicConfig(
-level=___,
-format=___,
+level=numeric_level,
+format="%(asctime)s [%(levelname)-8s] %(name)s: %(message)s",
 )
 
 # 5) structlog ayarı
 structlog.configure(
-wrapper_class=structlog.make_filtering_bound_logger(___),
+wrapper_class=structlog.make_filtering_bound_logger(numeric_level),
 cache_logger_on_first_use=True,
 processors=[
 # Zaman damgası (logun üstüne saat ekler)
-structlog.processors.TimeStamper(fmt=___, utc=___),
+structlog.processors.TimeStamper(fmt="iso", utc=True),
 # Seviye bilgisi (debug/info/warning gibi)
 structlog.processors.add_log_level,
 # Eğer hata (exception) olursa bunu loga ekler
@@ -101,5 +101,5 @@ Bu fonksiyon çağrılınca, hazır bir logger döndürmek.
 """
 _configure_logging()
 
-log = structlog.get_logger(___)
-return log.bind(app=___)
+log = structlog.get_logger(name)
+return log.bind(app="carla-drive")
