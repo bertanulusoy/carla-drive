@@ -10,7 +10,7 @@ class BCDataset(Dataset):
         """
         data_path: Kaydedilen verilerin (resimler ve aksiyonlar) olduğu klasör.
         """
-        self.data_path = data_pathself.filenames = [f for f in os.listdir(data_path) if f.endswith('.png')]
+        self.data_path = data_pathself.filenames = [f for f in os.listdir(data_path) if f.endswith('.png')] # pyright: ignore[reportUndefinedVariable]
 
     def __len__(self):
         return len(self.filenames)
@@ -44,3 +44,4 @@ class BCDataset(Dataset):
 if __name__ == "__main__":
 
     pass
+
