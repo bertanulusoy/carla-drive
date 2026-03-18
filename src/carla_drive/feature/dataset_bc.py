@@ -288,7 +288,7 @@ class BCDataset(Dataset[TensorPair]):
         # - 3 tane sayı olmalı: steer(yönlendirme), throttle(gaz), brake(fren)
         if action_t.ndim != 1 or action_t.shape[0] != 3:
             raise ValueError(
-                "Action shape yanlış! "
+                "Sen hayırdır laa! "
                 f"Beklenen (3,), gelen: {tuple(action_t.shape)}"
                 f"Dosya: {act_path.name}"
             )
