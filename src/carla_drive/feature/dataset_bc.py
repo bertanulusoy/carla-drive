@@ -180,7 +180,7 @@ class BCDataset(Dataset[TensorPair]):
 
         # Klasördeki tüm .png dosyalarını buluruz.
         # sorted(...) -> her çalıştırmada aynı sırada olsun (deterministik).
-        image_files = sorted(self.data_dir.glob(".png"))
+        image_files = sorted(self.data_dir.glob("*.png"))
 
         for img_path in image_files:
             # Aynı isimli action dosyası bekliyoruz
