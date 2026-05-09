@@ -9,4 +9,14 @@ def spawn_rgb_camera(vehicle, width, height, callback):
     """
     import carla
 
-    pass
+    # Get world and blueprint
+    world = vehicle.get_world()
+    blueprint_library = world.get_blueprint_library()
+    blueprint = blueprint_library.find('sensor.camera.rgb')
+
+    # Configure camera dimensions
+    blueprint.set_attribute('image_size_x', str(width))
+    blueprint.set_attribute('image_size_y', str(height))
+
+    # TODO: Spawn and attach camera
+    # TODO: Setup callback
