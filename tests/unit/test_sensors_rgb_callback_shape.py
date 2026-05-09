@@ -1,4 +1,5 @@
 """Test RGB camera callback and image processing."""
+
 from unittest.mock import Mock
 import sys
 import numpy as np
@@ -8,7 +9,7 @@ def test_rgb_camera_callback_processes_image():
     """Test that camera callback converts image data to numpy array."""
     # Mock carla module
     mock_carla = Mock()
-    sys.modules['carla'] = mock_carla
+    sys.modules["carla"] = mock_carla
 
     try:
         from carla_drive.feature.sensors import spawn_rgb_camera
@@ -65,5 +66,5 @@ def test_rgb_camera_callback_processes_image():
 
     finally:
         # Clean up
-        if 'carla' in sys.modules:
-            del sys.modules['carla']
+        if "carla" in sys.modules:
+            del sys.modules["carla"]

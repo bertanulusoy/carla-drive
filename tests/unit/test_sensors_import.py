@@ -1,4 +1,5 @@
 """Test basic import of sensors module."""
+
 import inspect
 
 
@@ -16,4 +17,4 @@ def test_spawn_rgb_camera_signature():
     sig = inspect.signature(spawn_rgb_camera)
     params = list(sig.parameters.keys())
 
-    assert params == ['vehicle', 'width', 'height', 'callback']
+    assert params == ["vehicle", "width", "height", "callback"]
