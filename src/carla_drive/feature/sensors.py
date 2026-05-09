@@ -27,4 +27,18 @@ def spawn_rgb_camera(vehicle, width, height, callback):
     # Spawn camera attached to vehicle
     camera = world.spawn_actor(blueprint, transform, attach_to=vehicle)
 
-    # TODO: Setup callback
+    # Define callback to process images
+    def process_image(image):
+        import numpy as np
+
+        # Convert raw data to numpy array
+        array = np.frombuffer(image.raw_data, dtype=np.uint8)
+        array = array.reshape((height, width, 4))  # CARLA uses BGRA format
+        array = array[:, :, :3]  # Keep only RGB channels
+        array = array[:, :, ::-1]  # Convert BGRA to RGB
+
+        # Call user callback with numpy array
+        callback(array)
+
+    # Listen for camera data
+    camera.listen(process_image)
