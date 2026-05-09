@@ -18,5 +18,13 @@ def spawn_rgb_camera(vehicle, width, height, callback):
     blueprint.set_attribute('image_size_x', str(width))
     blueprint.set_attribute('image_size_y', str(height))
 
-    # TODO: Spawn and attach camera
+    # Define camera transform (front of vehicle, slightly above and angled down)
+    transform = carla.Transform(
+        carla.Location(x=2.5, z=1.5),
+        carla.Rotation(pitch=-15)
+    )
+
+    # Spawn camera attached to vehicle
+    camera = world.spawn_actor(blueprint, transform, attach_to=vehicle)
+
     # TODO: Setup callback
